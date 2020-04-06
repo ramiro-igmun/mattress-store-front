@@ -10,7 +10,11 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-  myMethod(baseURL: string) {
-    return this.http.get(`${this.REST_API_SERVER}${baseURL}`);
+  getAll(endPoint: string) {
+    return this.http.get(`${this.REST_API_SERVER}${endPoint}`);
+  }
+
+  getOne(endPoint: string) {
+    return this.http.get(`${this.REST_API_SERVER}${endPoint}`);
   }
 }

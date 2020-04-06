@@ -1,0 +1,14 @@
+<div *ngIf="item">
+  <table border="1">
+    <tbody>
+      <tr>
+        <td>
+          <p>Name: {{item.name}}</p>
+          <p>Description: {{item.description}}</p>
+          <p>Price: {{item.price}}</p>
+        </td>
+        <td colspan="3"><img width="200" src="{{item.image}}" alt="hola"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
