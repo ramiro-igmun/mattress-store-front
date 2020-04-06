@@ -6,6 +6,7 @@
           <p>Name: {{item.name}}</p>
           <p>Description: {{item.description}}</p>
           <p>Price: {{item.price}}</p>
+          <button (click)="handleDelete()">Delete</button>
         </td>
         <td colspan="3"><img width="200" src="{{item.image}}" alt="hola"></td>
       </tr>

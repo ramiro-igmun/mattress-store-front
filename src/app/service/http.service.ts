@@ -17,4 +17,8 @@ export class HttpService {
   getOne(endPoint: string) {
     return this.http.get(`${this.REST_API_SERVER}${endPoint}`);
   }
+
+  deleteOne(endPoint: string) {
+    return this.http.delete(`${this.REST_API_SERVER}${endPoint}`)
+  }
 }
