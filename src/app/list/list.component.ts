@@ -11,12 +11,22 @@ export class ListComponent implements OnInit {
 
   private url: string;
   private items: Object;
+  private title: string;
 
   constructor(private route: ActivatedRoute, private httpService: HttpService) { }
 
   ngOnInit() {
-    this.route.url.subscribe(url => this.url = url[0].path);
+    this.route.url.subscribe(url => {
+      if (url[0]) {
+        this.url = url[0].path;
+        this.title = this.url.toUpperCase();
+      } else {
+        this.url = "";
+        this.title = "DESTACADOS"
+      }
+    });
     this.httpService.myMethod(this.url).subscribe(items => this.items = items);
+    console.log(this.url);
   }
 
 }
