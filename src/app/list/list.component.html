@@ -1,0 +1,12 @@
+<div *ngIf="items">
+  <table>
+    <thead><th>NOMBRE</th><th>DESCRIPCION</th><th>PRECIO</th></thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{item.name}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.price}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
