@@ -12,4 +12,13 @@
       </tr>
     </tbody>
   </table>
+  <form [formGroup]="detailForm" (ngSubmit)="onSubmit()" novalidate>
+    <label for="name">Nombre</label>
+    <input type="text" class="form-horizontal" id="name" formControlName="name">
+    <label for="description">Descripción</label>
+    <input type="text" class="form-horizontal" id="description" formControlName="description">
+    <label for="price">Precio</label>
+    <input type="text" class="form-horizontal" id="price" formControlName="price">
+    <button type="submit">Modificar</button>
+  </form>
 </div>
