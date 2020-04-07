@@ -13,7 +13,6 @@ export class AppComponent {
 
   logout(){
     this.authService.logout();
-    console.log('logged out');
     alert('Sesión cerrada');
   }
 }

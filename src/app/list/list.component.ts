@@ -26,7 +26,6 @@ export class ListComponent implements OnInit {
       }
     });
     this.httpService.getAll(this.path).subscribe(items => this.items = items);
-    console.log(this.path);
   }
 
   onClickField(item) {
