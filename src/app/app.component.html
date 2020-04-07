@@ -1,17 +1,16 @@
-<header>
-  <div class="container">
-    <a routerLink="/" class="logo">CoolApp</a>
-    <nav>
-      <ul>
-        <li><a href="#" routerLink="/colchones">Colchones</a></li>
-        <li><a href="#" routerLink="/somieres">Somieres</a></li>
-        <li><a href="#" routerLink="/login">Login</a></li>
-        <li><a (click)="logout()">Logout</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
 <div class="container">
-  <router-outlet></router-outlet>
+<header class="row bg-info p-2 pl-4"><h1><a routerLink="/" class="logo text-light">Mattress Store</a></h1></header>
+<mat-sidenav-container class="row mainContainer">
+  <mat-sidenav mode="side" opened>
+    <nav>
+      <mat-nav-list class="pr-5">
+        <a mat-list-item href="#" routerLink="/colchones">Colchones</a>
+        <a mat-list-item href="#" routerLink="/somieres">Somieres</a>
+        <a mat-list-item href="#" routerLink="/login">Login</a>
+        <a mat-list-item (click)="logout()">Logout</a>
+      </mat-nav-list>
+    </nav>
+  </mat-sidenav>
+  <mat-sidenav-content class="pl-5 pt-3 pr-5"><router-outlet></router-outlet></mat-sidenav-content>
+</mat-sidenav-container>
 </div>
