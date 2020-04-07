@@ -10,14 +10,18 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(email: string, password: string) {
-    return this.http.post(`${this.REST_API_SERVER}login`, { email, password })
-      .subscribe(res => this.setSession(res));
+  async login(email: string, password: string) {
+    const res = await this.http.post(`${this.REST_API_SERVER}login`, { email, password }).toPromise();
+    this.setSession(res);
+    return res;
   }
 
   private setSession(authResult) {
-    localStorage.setItem('token',authResult.token);
-    console.log(localStorage.getItem('token'));
+    const token = authResult.token;
+    if (token) {
+      localStorage.setItem('token', token);
+      console.log(token);
+    }
   }
 
   logout() {
