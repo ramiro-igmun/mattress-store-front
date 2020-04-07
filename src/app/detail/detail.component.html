@@ -1,24 +1,49 @@
 <div *ngIf="item">
-  <table border="1">
-    <tbody>
-      <tr>
-        <td>
-          <p>Name: {{item.name}}</p>
-          <p>Description: {{item.description}}</p>
-          <p>Price: {{item.price}}</p>
-          <button *ngIf="isAuthorized()" (click)="handleDelete()">Delete</button>
-        </td>
-        <td colspan="3"><img width="200" src="{{item.image}}" alt="hola"></td>
-      </tr>
-    </tbody>
-  </table>
-  <form *ngIf="isAuthorized()" [formGroup]="detailForm" (ngSubmit)="onSubmit()" novalidate>
-    <label for="name">Nombre</label>
-    <input type="text" class="form-horizontal" id="name" formControlName="name" autocomplete="off">
-    <label for="description">Descripción</label>
-    <input type="text" class="form-horizontal" id="description" formControlName="description" autocomplete="off">
-    <label for="price">Precio</label>
-    <input type="text" class="form-horizontal" id="price" formControlName="price" autocomplete="off">
-    <button type="submit">Modificar</button>
-  </form>
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>{{item.name}}</mat-card-title>
+      <mat-card-subtitle>{{item.type}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image class="image border pr-5 pl-5 mb-3" src="{{item.image}}" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <div></div>
+      <p>
+        {{item.description}}
+      </p>
+      <p><strong class="price">{{item.price}} €</strong></p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="btn btn-primary btn-sm ml-2 mr-3" *ngIf="isAuthorized()" data-toggle="modal"
+        data-target="#editItemModal">Editar</button>
+      <button class="btn btn-danger btn-sm" *ngIf="isAuthorized()" (click)="handleDelete()">Borrar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<div *ngIf="item" class="modal" id="editItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  data-backdrop="false" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Elemento</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-group" id="modify-form" *ngIf="isAuthorized()" [formGroup]="detailForm" (ngSubmit)="onSubmit()" novalidate>
+          <label for="name">Nombre</label>
+          <input type="text" class="form-control mb-4" id="name" formControlName="name" autocomplete="off" placeholder="{{item.name}}">
+          <label for="description">Descripción</label>
+          <textarea class="form-control mb-4" id="description" formControlName="description" rows="5"
+            autocomplete="off" placeholder="{{item.description}}"></textarea>
+          <label for="price">Precio</label>
+          <input type="text" class="form-control" id="price" formControlName="price" autocomplete="off" placeholder="{{item.price}}">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" form="modify-form" class="btn btn-primary btn-sm" onclick="$('.modal').modal('hide')">Guardar</button>
+      </div>
+    </div>
+  </div>
 </div>
