@@ -1,16 +1,26 @@
 <div class="container">
-<header class="row bg-info p-2 pl-4"><h1><a routerLink="/" class="logo text-light">Mattress Store</a></h1></header>
-<mat-sidenav-container class="row mainContainer">
-  <mat-sidenav mode="side" opened>
-    <nav>
-      <mat-nav-list class="pr-5">
-        <a mat-list-item href="#" routerLink="/colchones">Colchones</a>
-        <a mat-list-item href="#" routerLink="/somieres">Somieres</a>
-        <a mat-list-item href="#" routerLink="/login">Login</a>
-        <a mat-list-item (click)="logout()">Logout</a>
-      </mat-nav-list>
-    </nav>
-  </mat-sidenav>
-  <mat-sidenav-content class="pl-5 pt-3 pr-5"><router-outlet></router-outlet></mat-sidenav-content>
-</mat-sidenav-container>
+  <header class="row bg-info p-2 pl-4">
+    <h1 class="col-8"><a routerLink="/" class="logo text-light">Mattress Store</a></h1>
+    <div class="col logContainer">
+      <a class="btn btn-light btn-sm btn-outline log" href="#" routerLink="/login">Login</a>
+      <a class="btn btn-light btn-sm btn-outline log ml-3" (click)="logout()">Logout</a>
+    </div>
+  </header>
+
+  <mat-sidenav-container class="row mainContainer">
+    <mat-sidenav mode="side" opened>
+      <nav>
+        <mat-nav-list class="pr-5">
+          <a mat-list-item href="#" routerLink="/">Destacados</a>
+          <a mat-list-item href="#" routerLink="/colchones">Colchones</a>
+          <a mat-list-item href="#" routerLink="/somieres">Somieres</a>
+        </mat-nav-list>
+      </nav>
+    </mat-sidenav>
+    <mat-sidenav-content class="pl-5 pt-3 pr-5">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>
+
+<a name="" id="" class="btn btn-primary" href="#" role="button"></a>
