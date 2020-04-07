@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
     }
 
     if (response.token) {
+      alert(`${val.email}: sesión iniciada`)
       this.router.navigate(['']);
     }
 
