@@ -63,7 +63,7 @@ export class DetailComponent implements OnInit {
       modifiedItem.price = price;
     }
     if (name || description || price) {
-      this.httpService.modifyById(`${this.path}/${this.id}`, modifiedItem).subscribe(item => console.log(item));
+      this.httpService.modifyById(`${this.path}/${this.id}`, modifiedItem).subscribe(item => this.item = item);
       this.ngOnInit();
     }
   }

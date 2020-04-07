@@ -24,8 +24,8 @@ export class HttpService {
     return this.http.delete(`${this.REST_API_SERVER}${endPoint}`)
   }
 
-  modifyById(endPoint: string, modifiedItem: Item) {
-    return this.http.put(`${this.REST_API_SERVER}${endPoint}`, JSON.stringify(modifiedItem), {headers: new HttpHeaders({ 'Content-Type': 'application/json' })})
+  modifyById(endPoint: string, modifiedItem: Item): Observable<any> {
+    return this.http.put(`${this.REST_API_SERVER}${endPoint}`, JSON.stringify(modifiedItem), { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
   }
 
 }

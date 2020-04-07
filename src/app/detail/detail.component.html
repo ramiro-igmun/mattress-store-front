@@ -14,11 +14,11 @@
   </table>
   <form [formGroup]="detailForm" (ngSubmit)="onSubmit()" novalidate>
     <label for="name">Nombre</label>
-    <input type="text" class="form-horizontal" id="name" formControlName="name">
+    <input type="text" class="form-horizontal" id="name" formControlName="name" autocomplete="off">
     <label for="description">Descripción</label>
-    <input type="text" class="form-horizontal" id="description" formControlName="description">
+    <input type="text" class="form-horizontal" id="description" formControlName="description" autocomplete="off">
     <label for="price">Precio</label>
-    <input type="text" class="form-horizontal" id="price" formControlName="price">
+    <input type="text" class="form-horizontal" id="price" formControlName="price" autocomplete="off">
     <button type="submit">Modificar</button>
   </form>
 </div>
