@@ -4,6 +4,7 @@ import { HttpService } from '../service/http.service';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Item } from '../dtos/item';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-detail',
@@ -45,24 +46,30 @@ export class DetailComponent implements OnInit {
   }
 
   handleDelete() {
-    this.httpService.deleteById(`${this.path}/${this.id}`).subscribe(item => console.log(item));
+    this.httpService.deleteById(`${this.path}/${this.id}`)
+      .subscribe(item => console.log(item));
     this.location.back();
   }
 
-  onSubmit() {
-    let modifiedItem: Item = { ...this.item };
+  async onSubmit() {
+    let modifiedItemDTO: Item = { ...this.item };
     const name = this.detailForm.get('name').value;
     const description = this.detailForm.get('description').value;
     const price = this.detailForm.get('price').value;
     const outstanding = this.detailForm.get('outstanding').value;
 
-    modifiedItem.name = name ? name : modifiedItem.name;
-    modifiedItem.description = description ? description : modifiedItem.description;
-    modifiedItem.price = price ? price : modifiedItem.price;
-    modifiedItem.outstanding = outstanding ? outstanding : false;
+    modifiedItemDTO.name = name ? name : modifiedItemDTO.name;
+    modifiedItemDTO.description = description ? description : modifiedItemDTO.description;
+    modifiedItemDTO.price = price ? price : modifiedItemDTO.price;
+    modifiedItemDTO.outstanding = outstanding ? outstanding : false;
 
-    this.httpService.modifyById(`${this.path}/${this.id}`, modifiedItem).subscribe(item => this.item = item);
-    this.ngOnInit();
+    try {
+      const modifiedItem = await this.httpService.modifyById(`${this.path}/${this.id}`, modifiedItemDTO).toPromise()
+      this.item = modifiedItem;
+      this.ngOnInit();
+    } catch (err) {
+      alert(err.error.error);
+    }
 
   }
 

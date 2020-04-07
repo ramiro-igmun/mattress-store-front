@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       response = await this.authService.login(val.email, val.password)
     }
 
-    auth = {...response,...auth}
+    auth = {...auth,...response}
 
     if (auth.token) {
       alert(`${val.email}: sesión iniciada`)
