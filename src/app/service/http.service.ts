@@ -21,11 +21,15 @@ export class HttpService {
   }
 
   deleteById(endPoint: string) {
-    return this.http.delete(`${this.REST_API_SERVER}${endPoint}`)
+    const token = localStorage.getItem('token');
+    const authorizationHeader: HttpHeaders = new HttpHeaders({ 'Authorization': `bearer ${token}` });
+    return this.http.delete(`${this.REST_API_SERVER}${endPoint}`, { headers: authorizationHeader })
   }
 
   modifyById(endPoint: string, modifiedItem: Item): Observable<any> {
-    return this.http.put(`${this.REST_API_SERVER}${endPoint}`, JSON.stringify(modifiedItem), { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
+    const token = localStorage.getItem('token');
+    const jsonAndAuthoHeader: HttpHeaders = new HttpHeaders({ 'Authorization': `bearer ${token}`, 'Content-Type': 'application/json' });
+    return this.http.put(`${this.REST_API_SERVER}${endPoint}`, JSON.stringify(modifiedItem), { headers: jsonAndAuthoHeader })
   }
 
 }

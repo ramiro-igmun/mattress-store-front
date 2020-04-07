@@ -68,4 +68,8 @@ export class DetailComponent implements OnInit {
     }
   }
 
+  isAuthorized(){
+    return localStorage.getItem('token');
+  }
+
 }

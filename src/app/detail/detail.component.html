@@ -6,13 +6,13 @@
           <p>Name: {{item.name}}</p>
           <p>Description: {{item.description}}</p>
           <p>Price: {{item.price}}</p>
-          <button (click)="handleDelete()">Delete</button>
+          <button *ngIf="isAuthorized()" (click)="handleDelete()">Delete</button>
         </td>
         <td colspan="3"><img width="200" src="{{item.image}}" alt="hola"></td>
       </tr>
     </tbody>
   </table>
-  <form [formGroup]="detailForm" (ngSubmit)="onSubmit()" novalidate>
+  <form *ngIf="isAuthorized()" [formGroup]="detailForm" (ngSubmit)="onSubmit()" novalidate>
     <label for="name">Nombre</label>
     <input type="text" class="form-horizontal" id="name" formControlName="name" autocomplete="off">
     <label for="description">Descripción</label>
