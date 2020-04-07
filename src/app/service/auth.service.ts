@@ -11,9 +11,13 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   async login(email: string, password: string) {
-    const res = await this.http.post(`${this.REST_API_SERVER}login`, { email, password }).toPromise();
-    this.setSession(res);
-    return res;
+    try {
+      const res = await this.http.post(`${this.REST_API_SERVER}login`, { email, password }).toPromise();
+      this.setSession(res);
+      return res;
+    } catch (err) {
+      alert(err.error.error);
+    }
   }
 
   private setSession(authResult) {

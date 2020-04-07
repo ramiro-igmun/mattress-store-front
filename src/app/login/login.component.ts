@@ -29,13 +29,16 @@ export class LoginComponent implements OnInit {
 
   async login() {
     const val = this.loginForm.value;
+    let auth = {token:''};
     let response;
 
     if (val.email && val.password) {
       response = await this.authService.login(val.email, val.password)
     }
 
-    if (response.token) {
+    auth = {...response,...auth}
+
+    if (auth.token) {
       alert(`${val.email}: sesión iniciada`)
       this.router.navigate(['']);
     }
