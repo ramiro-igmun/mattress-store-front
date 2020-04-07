@@ -7,9 +7,9 @@
     </label>
     <input type="text" id="email" name="email" placeholder="Email" class="form-control" formControlName="email">
     <div *ngIf="hasErrors('email')" class="form-error">
-      <p *ngIf="getError('email', 'required')">
+      <small *ngIf="getError('email', 'required')">
         El email es obligatorio
-      </p>
+      </small>
     </div>
   </div>
   <div class="form-group label-align">
@@ -19,13 +19,11 @@
     <input type="password" id="password" name="password" placeholder="Password" class="form-control"
            formControlName="password">
     <div *ngIf="hasErrors('password')" class="form-error">
-      <p *ngIf="getError('password', 'required')">
+      <small *ngIf="getError('password', 'required')">
         El password es obligatorio
-      </p>
+      </small>
     </div>
   </div>
-  <div class="d-flex justify-content-center">
     <button type="submit" class="btn btn-success">Login</button>
-  </div>
 </form>
 

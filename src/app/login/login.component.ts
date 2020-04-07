@@ -27,19 +27,20 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
+  async login() {
     const val = this.loginForm.value;
+    let response;
 
     if (val.email && val.password) {
-      this.authService.login(val.email, val.password)
-        // .subscribe(
-        //   () => {
-        //     console.log("User is logged in");
-        //     this.router.navigateByUrl('/');
-        //   }
-        // );
+      response = await this.authService.login(val.email, val.password)
     }
+
+    if (response.token) {
+      this.router.navigate(['']);
+    }
+
   }
+
 
   hasErrors(field: string) {
     return (!this.loginForm.get(field).valid && this.loginForm.get(field).touched) ||
