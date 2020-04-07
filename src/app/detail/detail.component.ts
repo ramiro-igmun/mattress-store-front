@@ -40,6 +40,7 @@ export class DetailComponent implements OnInit {
       name: ['', null],
       description: ['', null],
       price: ['', null],
+      outstanding: ['', null]
     });
   }
 
@@ -53,23 +54,27 @@ export class DetailComponent implements OnInit {
     const name = this.detailForm.get('name').value;
     const description = this.detailForm.get('description').value;
     const price = this.detailForm.get('price').value;
-    if (name) {
-      modifiedItem.name = name;
-    }
-    if (description) {
-      modifiedItem.description = description;
-    }
-    if (price) {
-      modifiedItem.price = price;
-    }
-    if (name || description || price) {
-      this.httpService.modifyById(`${this.path}/${this.id}`, modifiedItem).subscribe(item => this.item = item);
-      this.ngOnInit();
-    }
+    const outstanding = this.detailForm.get('outstanding').value;
+
+    modifiedItem.name = name ? name : modifiedItem.name;
+    modifiedItem.description = description ? description : modifiedItem.description;
+    modifiedItem.price = price ? price : modifiedItem.price;
+    modifiedItem.outstanding = outstanding ? outstanding : false;
+
+    this.httpService.modifyById(`${this.path}/${this.id}`, modifiedItem).subscribe(item => this.item = item);
+    this.ngOnInit();
+
   }
 
-  isAuthorized(){
+  isAuthorized() {
     return localStorage.getItem('token');
+  }
+
+  outstandingValue() {
+    if (this.item.outstanding) {
+      return 'on'
+    }
+    return ''
   }
 
 }

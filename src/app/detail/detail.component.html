@@ -38,7 +38,13 @@
           <textarea class="form-control mb-4" id="description" formControlName="description" rows="5"
             autocomplete="off" placeholder="{{item.description}}"></textarea>
           <label for="price">Precio</label>
-          <input type="text" class="form-control" id="price" formControlName="price" autocomplete="off" placeholder="{{item.price}}">
+          <input type="text" class="form-control mb-4" id="price" formControlName="price" autocomplete="off" placeholder="{{item.price}}">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" name="outstanding" formControlName="outstanding" value="true">
+              Destacado
+            </label>
+          </div>
         </form>
       </div>
       <div class="modal-footer">
